@@ -1,0 +1,46 @@
+<?php
+/**
+ * @file
+ * Keep track of the users who have edited a wiki page.
+ * 
+ * @todo Check whether the page content has changed.
+ */
+
+/**
+ * Implements hook_form_FORM_alter().
+ */
+function cyco_remember_editors_form_wiki_page_node_form_alter( &$form, $form_state ) {
+  $form['#submit'][] = '_cyco_remember_editors_wiki_submit';
+//  $form['field_editors']['#access'] = FALSE;
+}
+
+/**
+ * Add current user to list of editors if not already there.
+ */
+function _cyco_remember_editors_wiki_submit( $form, &$form_state ) {
+  global $user;
+  //Editor is current user.
+  $editor_name = $user->name;
+  //Flag to show whether the editor is already in the list.
+  $editor_in_list = FALSE;
+  $language = $form['#entity']->language;
+  $num_editors = 0;
+  //Are any editors listed?
+  if ( isset($form['#entity']->field_editors[$language][0]['value']) ) {
+    //Yes - see whether the current editor is already in the list.
+    $current_values = $form['#entity']->field_editors[$language];
+    $num_editors = sizeof( $current_values );
+    for( $index = 0; $index < $num_editors; $index ++ ) {
+      if ( $current_values[$index]['value'] == $editor_name ) {
+        //Editor is already listed.
+        $editor_in_list = TRUE;
+        break;
+      }
+    }
+  }
+  if ( ! $editor_in_list ) {
+    //Current editor is not in the list. Add him/her.
+    $form_state['values']['field_editors'][$language][$num_editors]['value']
+        = $editor_name;
+  }
+}
