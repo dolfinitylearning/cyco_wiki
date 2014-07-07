@@ -187,7 +187,7 @@ directives.register_directive('vimeo', Vimeo)
 #Read the content to translate.
 testing = False
 if testing:
-    f = open('in_math.txt')
+    f = open('in.txt')
     content = f.readlines()
     f.close()
     data_in = ''.join(content)

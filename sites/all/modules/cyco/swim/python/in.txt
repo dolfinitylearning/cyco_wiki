@@ -1,11 +1,30 @@
-.. exercise:: 666
 
-This is nothing.
+Goals
+=====
 
-.. pseudent:: arla_smile
+Cyco supports two primary use cases.
 
-    This is nothing either.
+Single-use files tied to specific content
+-----------------------------------------
 
-    Nope, nothing at *all*.
+Many pages have images that are used just on that page. Note that if an image is shown more than once on a page (quite common), it still need only be uploaded once.
 
-This is more.
+A good mental model for authors is that these images are part of the page they appear in, just like the text. The images don't appear anywhere else. The author doesn't have to worry about where the files are stored. To add an image on a page, upload the image to that page, and insert it into the content.
+
+Shared files used in more than one context
+------------------------------------------
+
+Another use case is where one image (or attached file) applies across a section of the course, or across the entire course. The gratuitous puppy photos on this wiki are examples. In this case, any puppy image could have been chosen. A particular image is just one of a set that represent the same concept (cuteness).
+
+Test
+....
+
+This is not here.
+
+
+
+This is not here, either.
+
+
+
+

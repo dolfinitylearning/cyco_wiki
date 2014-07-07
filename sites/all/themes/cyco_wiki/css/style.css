@@ -23,12 +23,12 @@ h2.block-title {
   font-size: 150%;
 }
 
-h1.page-header {
-  font-size: 200%;
-}
-
 header .navbar-header a.name {
   font-size: 240%;
+}
+
+h1.page-header {
+  font-size: 220%;
 }
 
 nav ul.nav {
@@ -64,14 +64,65 @@ footer ul.nav li {
   display: inline-block;
 }
 
-.view-keywords .views-field-description {
+.view-keywords .views-field-description,
+.view-workflow-tags .views-field-description {
   margin-left: 2em;
 }
 
-.view-keywords .view-header {
-  margin-bottom: 2em;    
+.view-keywords .view-header,
+.view-workflow-tags .view-header {
+  margin-bottom: 1.5em;    
 }
 
-.view-keywords .views-row {
+.view-keywords .views-row,
+.view-workflow-tags .views-row {
   margin-bottom: 1em;
+}
+
+/*
+* Headers. The document class comes from docutils. 
+*/
+
+.content .swim .document h1 {
+  font-size: 190%;
+}
+
+.content .swim .document h2 {
+  font-size: 150%;
+}
+
+.content .swim .document h3 {
+  font-size: 100%;
+  font-weight: bold;
+  font-style: italic;
+}
+
+.content .swim .document h4 {
+  font-size: 100%;
+  font-style: italic;
+}
+
+.content .swim .document h5 {
+  font-size: 80%;
+  font-weight: bold;
+  font-style: italic;  
+}
+
+.content .swim .document h6 {
+  font-size: 80%;
+  font-style: italic;
+}
+
+.content .field {
+  margin-top: 1em;
+}
+
+.content .swim .document img {
+  margin-bottom: 1em;
+  max-width: 100%;
+}
+
+.view-recent-changes .views-field ul {
+  list-style: none;
+  padding-left: 0;
 }

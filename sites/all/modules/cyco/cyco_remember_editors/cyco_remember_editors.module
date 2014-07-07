@@ -11,7 +11,7 @@
  */
 function cyco_remember_editors_form_wiki_page_node_form_alter( &$form, $form_state ) {
   $form['#submit'][] = '_cyco_remember_editors_wiki_submit';
-//  $form['field_editors']['#access'] = FALSE;
+  $form['field_editors']['#access'] = FALSE;
 }
 
 /**
