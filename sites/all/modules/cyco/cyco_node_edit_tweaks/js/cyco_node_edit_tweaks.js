@@ -8,7 +8,8 @@ var nameSpaceRef; //Convenience.
 Drupal.behaviors.cycoNodeEditTweaks = {
   attach: function (context, settings) {
     //Show we do anything?
-    if ( ! Drupal.settings.cycoNodeEditTweaks.enabled ) {
+    if ( ! Drupal.settings.cycoNodeEditTweaks
+         || ! Drupal.settings.cycoNodeEditTweaks.enabled ) {
       return false;
     }
     nameSpaceRef = this;
