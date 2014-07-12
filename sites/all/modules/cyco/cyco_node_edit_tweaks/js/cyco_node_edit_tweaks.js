@@ -11,7 +11,6 @@ Drupal.behaviors.cycoNodeEditTweaks = {
     $(window).load(this.start);
   },
   start: function(){
-      console.log('starting');
     //Show we do anything?
     if ( ! Drupal.settings.cycoNodeEditTweaks
          || ! Drupal.settings.cycoNodeEditTweaks.enabled ) {
