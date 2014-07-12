@@ -441,7 +441,7 @@ function swim_field_formatter_view(
     $langcode, $items, $display
   ) {
   //MathJax
-  $stuff = drupal_add_js('http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML');
+  $stuff = drupal_add_js('https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML');
   $element = array();
   switch ($display['type']) {
     case 'swim_default_formatter':
