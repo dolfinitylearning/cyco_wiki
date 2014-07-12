@@ -7,13 +7,16 @@
       if ( this.done ) {
         return;
       }
+      //Set convenience reference.
+      nameSpaceyThing = this;
+//      $(window).load(this.start);
+//    },
+//    start: function() {
       this.done = true;
       //Get CSRF token, if needed.
       if ( ! swimServices.csrfToken ) {
         swimServices.getCsrfToken();
       }
-      //Set convenience reference.
-      nameSpaceyThing = this;
       CKEDITOR.on("instanceLoaded", function(evnt) {
         var editor = evnt.editor;
        
@@ -122,10 +125,10 @@ breakAfterClose : false
       var fontHeight 
           = parseInt(editor.document.getBody().getComputedStyle('font-size'));
       var lineHeight = fontHeight * 1.5;
-      var toolbarHeight = 45;
-      var resizeWidgetHeight = 28; //The status bar.
-      editor.resize( '100%', 
-          lines * lineHeight + toolbarHeight + resizeWidgetHeight);
+//      var toolbarHeight = 45;
+//      var resizeWidgetHeight = 28; //The status bar.
+      var targetHeight = lines * lineHeight;// + toolbarHeight + resizeWidgetHeight;
+      editor.resize( '100%', targetHeight, false );
     },
     swimSetup: function (editor) {    
       this.setupBeforeUnload(editor);
