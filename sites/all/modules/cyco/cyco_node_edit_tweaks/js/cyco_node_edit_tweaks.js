@@ -1,3 +1,4 @@
+"use strict";
 (function ($) {
 
 /**
@@ -7,21 +8,24 @@
 var nameSpaceRef; //Convenience.
 Drupal.behaviors.cycoNodeEditTweaks = {
   attach: function (context, settings) {
-    nameSpaceRef = this;
-    $(window).load(this.start);
-  },
-  start: function(){
     //Show we do anything?
     if ( ! Drupal.settings.cycoNodeEditTweaks
          || ! Drupal.settings.cycoNodeEditTweaks.enabled ) {
       return false;
     }
+    nameSpaceRef = this;
+    $(window).load(this.start);
+  },
+  start: function(){
     $(".swim-summary-wrapper").each(function() {
       //Sometimes this runs more than once, so do this only if the
       //summary is MT.
       if ( $(this).parent().find(".collapse-summary-indicator").length == 0 ) {
         //Remember the summary content widget.
         var summaryWidget = nameSpaceRef.findCKSummaryWidget();
+        if ( ! summaryWidget ) {
+          return;
+        }
         //Compute text to show.
         var indicatorText 
             = nameSpaceRef.computeStatusMessage( summaryWidget );
