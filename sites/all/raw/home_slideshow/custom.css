@@ -32,3 +32,12 @@ div#arrow-pointer {
 .reveal section.smaller-text p {
   font-size: 120%;
 }
+
+.reveal section .highlight {
+  color: yellow;
+}
+
+.reveal section ul li {
+  font-size: 120%;
+  margin-bottom: 20px;
+}
