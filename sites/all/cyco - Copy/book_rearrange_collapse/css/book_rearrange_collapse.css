@@ -1,0 +1,9 @@
+/**
+ * @file
+ * Show collapsed elements on book rearrange form.
+ */
+
+table#book-outline tr.collapsed td .handle {
+  background-image: url(../images/draggable-collapsed.png);
+  height: 18px;
+}

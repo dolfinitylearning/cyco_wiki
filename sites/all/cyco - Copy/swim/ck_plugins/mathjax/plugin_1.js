@@ -11,7 +11,7 @@
 
 ( function() {
 
-	var cdn = 'https:\/\/cdn.mathjax.org\/mathjax\/2.2-latest\/MathJax.js?config=TeX-AMS_HTML';
+	var cdn = 'http:\/\/cdn.mathjax.org\/mathjax\/2.2-latest\/MathJax.js?config=TeX-AMS_HTML';
 
 	CKEDITOR.plugins.add( 'mathjax', {
 		lang: 'ca,cs,cy,de,el,en,en-gb,es,fa,fi,fr,gl,hu,ja,km,nb,nl,no,pl,pt,pt-br,ro,ru,sl,sv,uk,zh,zh-cn', // %REMOVE_LINE_CORE%
@@ -20,8 +20,6 @@
 		hidpi: true, // %REMOVE_LINE_CORE%
 
 		init: function( editor ) {
-      editor.config.mathJaxClass = 'math';
-
 			var cls = editor.config.mathJaxClass || 'math-tex';
 
 			editor.widgets.add( 'mathjax', {
@@ -103,9 +101,7 @@
 				},
 
 				downcast: function( el ) {
-					el.children[ 0 ].replaceWith( 
-            new CKEDITOR.htmlParser.text( this.data.math )
-          );
+					el.children[ 0 ].replaceWith( new CKEDITOR.htmlParser.text( this.data.math ) );
 
 					// Remove style display:inline-block.
 					var attrs = el.attributes;
@@ -190,36 +186,17 @@
 		}
 	};
 
-  /**
-   * Check whether equation is Small.
-   * @param {String} value LaTeX to check.
-   * @return {Boolean} True if Small equation. 
-   */
-	CKEDITOR.plugins.mathjax.isSmall = function( value ) {
-    if ( value.indexOf( '\\(' ) == -1 ) {
-      return false;
-    }
-		return true;
-	};
-  
 	/**
-	 * Trims MathJax value from '\(1+1=2\)' or '\[1+1=2\]' to '1+1=2'.
+	 * Trims MathJax value from '\(1+1=2\)' to '1+1=2'.
 	 *
 	 * @private
 	 * @param {String} value String to trim.
 	 * @returns {String} Trimed string.
 	 */
 	CKEDITOR.plugins.mathjax.trim = function( value ) {
-    var begin, end;
-    if ( value.indexOf( '\\(' ) == -1 ) {
-      //Look for \[ - big equation.
-      begin = value.indexOf( '\\[' ) + 2;
-			end = value.lastIndexOf( '\\]' );
-    }
-    else {
-      begin = value.indexOf( '\\(' ) + 2;
+		var begin = value.indexOf( '\\(' ) + 2,
 			end = value.lastIndexOf( '\\)' );
-    }
+
 		return value.substring( begin, end );
 	};
 
@@ -320,8 +297,7 @@
 									// MathJax configuration, disable messages.
 									'MathJax.Hub.Config( {' +
 										'showMathMenu: false,' +
-										'messageStyle: "none",' +
-                    '"HTML-CSS": { scale: 130 } ' +
+										'messageStyle: "none"' +
 									'} );' +
 
 									// Get main CKEDITOR form parent.
@@ -465,6 +441,7 @@
  * If you set it to the following:
  *
  *		config.mathJaxClass = 'my-math';
+ *
  * The code below will be recognized as a Mathematical Formulas widget.
  *
  *		<span class="my-math">\( \sqrt{4} = 2 \)</span>

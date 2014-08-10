@@ -2,7 +2,6 @@
  * @file
  * Library of services calls. Assumes some Drupal.settings are correct.
  */
-"use strict";
 
 var swimServices = swimServices || {};
 

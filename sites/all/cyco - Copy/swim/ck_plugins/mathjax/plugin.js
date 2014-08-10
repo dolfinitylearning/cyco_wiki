@@ -20,8 +20,6 @@
 		hidpi: true, // %REMOVE_LINE_CORE%
 
 		init: function( editor ) {
-      editor.config.mathJaxClass = 'math';
-
 			var cls = editor.config.mathJaxClass || 'math-tex';
 
 			editor.widgets.add( 'mathjax', {
@@ -103,9 +101,7 @@
 				},
 
 				downcast: function( el ) {
-					el.children[ 0 ].replaceWith( 
-            new CKEDITOR.htmlParser.text( this.data.math )
-          );
+					el.children[ 0 ].replaceWith( new CKEDITOR.htmlParser.text( this.data.math ) );
 
 					// Remove style display:inline-block.
 					var attrs = el.attributes;
@@ -465,6 +461,7 @@
  * If you set it to the following:
  *
  *		config.mathJaxClass = 'my-math';
+ *
  * The code below will be recognized as a Mathematical Formulas widget.
  *
  *		<span class="my-math">\( \sqrt{4} = 2 \)</span>

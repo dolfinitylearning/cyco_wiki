@@ -13,12 +13,12 @@ function _swim_settings_form() {
     '#type' => 'textarea',
     '#title' => t( 'SWIM help message' ),
     '#description' => t(
-        'Message to show when user clicks the help button in the SWIM '
+        'Message to show when user clicks the ReST help button in the SWIM '
         . 'editor. If empty, the help button will not be shown.'
     ),
     //Remove grippie.
     '#resizable' => FALSE,
-    '#default_value' => swim_markdown2html(
+    '#default_value' => swim_rest2ckhtml(
         variable_get('swim_help_message', '') 
     ),
     '#attributes' => array(
