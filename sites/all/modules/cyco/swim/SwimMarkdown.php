@@ -4,7 +4,7 @@
  *
  * @author mathieso
  */
-$parser_path = DRUPAL_ROOT . '/profiles/cyco/libraries/cebe/markdown';
+$parser_path = DRUPAL_ROOT . '/sites/all/libraries/cebe/markdown';
 
 require_once $parser_path . '/Parser.php';
 require_once $parser_path . '/Markdown.php';
