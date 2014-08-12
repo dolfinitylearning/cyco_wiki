@@ -1,0 +1,52 @@
+<?php
+
+require_once 'cyco_core_error_handler.inc';
+
+function cyco_core_init() {
+  //Let other files add their stuff.
+  _cyco_core_error_init();
+  _cyco_core_config_client_services();
+}
+
+/**
+ * Contribute to hook_init.
+ */
+function _cyco_core_error_init() {
+  //Add client-side error handling.
+  drupal_add_js( 
+      drupal_get_path('module', 'cyco_core') . '/js/cyco_core_error_handler.js'
+  );
+}
+
+/**
+ * Add client-side data for services.
+ */
+function _cyco_core_config_client_services() {
+  global $base_url;
+  $settings = array(
+    'baseUrl' => $base_url,
+  );
+  drupal_add_js(
+      array('cycoCoreServices' => $settings),
+      'setting'
+  );
+}
+
+/**
+ * Handle a client-side error.
+ * Most of the error handling is in another file. 
+ * This function is here so the menu processor can handle it.
+ * @param string $message The Bad Thing that happened.
+ */
+function cyco_core_client_error() {
+  $message = t( $_GET['message'] );
+  $message = 'Something bad happened on the client-side: ' . $message;
+  static $error_handler = NULL;
+  if ( is_null($error_handler) ) {
+    $error_handler = new CyCoErrorHandler();
+  }
+  $error_handler->reportError($message, FALSE);
+  drupal_json_output(
+      array('status' => TRUE)
+  );
+}

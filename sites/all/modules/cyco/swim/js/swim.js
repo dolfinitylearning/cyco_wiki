@@ -64,7 +64,7 @@
         //Main setup.
         nameSpaceyThing.swimSetup(editor);
         //Add a class for customization of the body.
-        editor.document.getBody().addClass('swim_body')
+        editor.document.getBody().addClass('swim_body');
         //Flag the editor as initialized.
         $( "#" + editor.id ).attr("data-swim-init", "yes");
       });

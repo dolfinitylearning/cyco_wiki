@@ -1,0 +1,6 @@
+name = Cyco core
+description = Remains for SWIM.
+package = CyberCourse
+version = 7.x-1.0
+core = 7.x
+scripts[] = js/cyco_core_services.js

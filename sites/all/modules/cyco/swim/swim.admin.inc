@@ -18,7 +18,7 @@ function _swim_settings_form() {
     ),
     //Remove grippie.
     '#resizable' => FALSE,
-    '#default_value' => swim_markdown2html(
+    '#default_value' => swim_markdown2ckhtml(
         variable_get('swim_help_message', '') 
     ),
     '#attributes' => array(
@@ -90,13 +90,13 @@ function _swim_check_settings_height_field( &$form_state, $field_name, $default 
 
 /**
  * Settings form submit function. 
- * Save the message (ReST), and a rendered version of it.
+ * Save the message (Markdown), and a rendered version of it.
  */
 function _swim_save_settings( $form, $form_state ) {
-  //ReST help message.
+  //Markdown help message.
   $message = $form_state['values']['swim_help_message'];
   variable_set('swim_help_message', $message);
-  $rendered_message = swim_rest2html( $message );
+  $rendered_message = swim_markdown2html( $message );
   variable_set('swim_help_message_rendered', $rendered_message);
   //Editor height.
   $editor_height = $form_state['values']['swim_default_height'];

@@ -5,7 +5,6 @@
  * @author mathieso
  */
 $parser_path = DRUPAL_ROOT . '/sites/all/libraries/cebe/markdown';
-drupal_set_message('root: ' . DRUPAL_ROOT);
 
 require_once $parser_path . '/Parser.php';
 require_once $parser_path . '/Markdown.php';
