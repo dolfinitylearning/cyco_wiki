@@ -1,9 +1,0 @@
-name = Add create page links
-description = Adds links to let authors create new pages.
-package = CyberCourse
-version = 7.x-1.0
-core = 7.x
-files[] = DacplContentTypeInfo.inc
-dependencies[] = book
-dependencies[] = cyco_core
-stylesheets[all][] = css/cyco_add_pages.css
