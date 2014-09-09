@@ -4,13 +4,17 @@
 */
 
 @import url("swim_editing.css");
-@import url("rest/html4css1.css");
-@import url("rest/math.css");
-@import url("swim_rest_classes.css");
 
-/* reStructText warnings. */
-.swim .system-message {
-  border: 0.2em red dotted;
-  margin-top: 1em;
-  padding: 0.2em;
+code {
+  color: inherit !important;
+  background-color: inherit !important;
+  font-size: inherit !important;
+}
+
+.swim img {
+  max-width: 100%;
+}
+
+.bordered {
+  border: 1px solid #777;
 }
