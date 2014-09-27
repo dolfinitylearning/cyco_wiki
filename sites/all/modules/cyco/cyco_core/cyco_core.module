@@ -1,6 +1,7 @@
 <?php
 
 require_once 'cyco_core_error_handler.inc';
+require_once 'cyco_core_utilities.inc';
 
 function cyco_core_init() {
   //Let other files add their stuff.

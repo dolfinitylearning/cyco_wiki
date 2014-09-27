@@ -80,3 +80,62 @@ function cyco_core_uri2path( $uri ) {
   $usable_url = $url['path'];
   return $usable_url;
 }
+
+/**
+ * Check whether the current user has a role, or one of a set of roles.
+ * 
+ * @global stdClass $user Current user.
+ * 
+ * @param int or stdClass $user User id or object.
+ * @param string or array $roles Role(s) to check for.
+ * @return boolean True if the user has at least one of the roles.
+ */
+function cyco_core_user_has_role($user, $roles) {
+  // Load the user to check, depending on the type of the first argument.
+  if (is_integer($user)) {
+    // It's a uid.
+    $user = user_load($user);
+    if ( ! $user ) {
+      $message = __FILE__ . ' (line ' . __LINE__ . ') ' . __FUNCTION__
+          . ' bad uid: ' . $user;
+      cyco_core_handle_error($message);
+      return FALSE;
+    }
+  }
+  elseif (is_object($user)) {
+    if ( !isset($user->roles)) {
+      $message = __FILE__ . ' (line ' . __LINE__ . ') ' . __FUNCTION__
+          . ' bad user object: <pre>' . print_r($user, TRUE) . '</pre>';
+      cyco_core_handle_error($message);
+      return FALSE;
+    }
+  }
+  else {
+    $message = __FILE__ . ' (line ' . __LINE__ . ') ' . __FUNCTION__
+        . ' bad thing passed: <pre>' . print_r($user, TRUE) . '</pre>';
+    cyco_core_handle_error($message);
+    return FALSE;
+  }
+  if (is_array($roles)) {
+    $check = array_intersect($roles, array_values($user->roles));
+    $result = empty($check) ? FALSE : TRUE;
+  }
+  else {
+    $result = in_array($roles, $user->roles);
+  }
+  return $result;
+}
+
+/**
+ * Check whether the current user has a role, or one of a set of roles.
+ * 
+ * @global stdClass $user Current user.
+ * 
+ * @param string or array $roles Role(s) to check for.
+ * @return boolean True if the user has at least one of the roles.
+ */
+function cyco_core_current_user_has_role($roles) {
+  global $user;
+  return cyco_core_user_has_role($user, $roles);
+}
+

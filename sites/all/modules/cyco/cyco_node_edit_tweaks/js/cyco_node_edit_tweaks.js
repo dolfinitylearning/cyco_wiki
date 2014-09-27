@@ -1,3 +1,8 @@
+/**
+ * @file
+ * Implement client-side of the tweaks.
+ */
+
 "use strict";
 (function ($) {
 
@@ -15,9 +20,6 @@ Drupal.behaviors.cycoNodeEditTweaks = {
     }
     nameSpaceRef = this;
     $(window).load(this.start);
-    CKEDITOR.on("instanceReady", function() {
-        nameSpaceRef.start();
-    });
   },
   start: function(){
     $(".swim-summary-wrapper").each(function() {

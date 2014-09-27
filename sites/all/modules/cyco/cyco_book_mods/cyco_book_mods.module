@@ -16,7 +16,7 @@ function cyco_book_mods_menu() {
   //Show a tab for rearranging pages, if appropriate.
   $items['node/%/rearrange'] = array(
     'title' => 'Rearrange pages',
-    'description' => 'Change the order of pages in a course or blueprint',
+    'description' => 'Change the order of pages',
     'page callback' => '_cyco_book_mods_rearrange',
     'page arguments' => array(1),
     'access callback' => '_cyco_book_mods_rearrange_visible',
@@ -72,9 +72,7 @@ function cyco_book_mods_form_alter( &$form, &$form_state, $form_id) {
   //Hide the book action for nonadmins.
   if ( isset( $form['book'] ) ) {
     $page_types_to_work_on = array(
-      'course_page_node_form',
-      'blueprint_page_node_form',
-      'learning_map_node_form',
+      'wiki_page_node_form',
     );
     if ( in_array($form_id, $page_types_to_work_on) ) {
       if (! cyco_core_current_user_has_role('administrator') ) {
