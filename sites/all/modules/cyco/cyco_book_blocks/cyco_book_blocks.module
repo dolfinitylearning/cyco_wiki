@@ -34,7 +34,7 @@ function cyco_book_blocks_menu_link_alter(&$item){
  */
 function cyco_book_blocks_flush_all_tree_menu_caches() {
   //Get bids (nids of root nodes) for all relevant book types.
-  $root_types = cyco_core_get_book_root_types();
+  $root_types = array('wiki_page');
   $all_bids = array();
   foreach ( $root_types as $root_type ) {
     $bids = _cbb_get_nids_book_roots( $root_type );
@@ -61,13 +61,9 @@ function _cbb_clear_book_tree_menu_caches( $bid ) {
 
 function cyco_book_blocks_permission() {
   return array(
-    'view unpublished cyco course content' => array(
-      'title' => t('View unpublished course content'),
-      'description' => t('User can see course content that has not been published.'),
-    ),
-    'view unpublished cyco blueprint content' => array(
-      'title' => t('View unpublished blueprint content'),
-      'description' => t('User can see blueprint content that has not been published.'),
+    'view unpublished cyco wiki content' => array(
+      'title' => t('View unpublished wiki content'),
+      'description' => t('User can see wiki content that has not been published.'),
     ),
   );
 }
@@ -77,16 +73,14 @@ function cyco_book_blocks_permission() {
  * Implements hook_block_info().
  */
 function cyco_book_blocks_block_info() {
-  $blocks = _cbb_block_info_for_type('course_page', 'Course');
-  $blocks += _cbb_block_info_for_type('blueprint_page', 'Blueprint');
-  //Get course roots.
+  $blocks = _cbb_block_info_for_type('wiki_page', 'Wiki');
   return $blocks;  
 }
 
 /**
  * Create block info array for book roots of a given content type.
- * @param string $content_type Content type, e.g., course_page.
- * @param string $type_label Label in block admin name, e.g., Course.
+ * @param string $content_type Content type, e.g., wiki_page.
+ * @param string $type_label Label in block admin name, e.g., Wiki.
  * @return array Block info array.
  */
 function _cbb_block_info_for_type( $content_type, $type_label ) {
@@ -163,22 +157,6 @@ function _cbb_get_nids_book_roots( $bundle_name ) {
 }
 
 /**
- * Make a message to show when there are no books.
- * @param string $book_type_label_plural Book type, e.g., dolfins.
- * @return string Message.
- */
-//function _cbb_make_empty_message( $book_type_label_plural ) {
-//  $message = '<p>' . t('No ') . t($book_type_label_plural) . '.</p>';
-//  $make_message = 
-//      '<p>' .
-//      t('Administrators can create @type in the control panel.', 
-//          array('@type' => $book_type_label_plural)
-//      ) . 
-//      '</p>';
-//  return $message . $make_message;
-//}
-
-/**
  * Make a tree for a node
  * @param int $root_nid Nid.
  * @return string Content.
@@ -243,7 +221,7 @@ function _cbb_get_book_tree( $root_nid ) {
 
 /**
  * Compute the name of the cache to use.
- * @param string $book_type Course or blueprint.
+ * @param integer $nid Node id.
  * @param boolean $see_unpublished True if current user can see unpublished pages.
  */
 function _ccbb_compute_cache_name( $nid, $see_unpublished ) {
@@ -409,10 +387,13 @@ function cbb_recursive_link_creator(
         //Action is to open.
         $classes[] = 'open-branch';
         // If there are submenu items we assign the parent a class.
-        if ( ! empty($item['below'])  ) {
+        if ( empty($item['below'])  ) {
+          $classes[] = 'no-branch';
+        }
+        else {
           $nextlevel = '';
           $nextlevel = cbb_recursive_link_creator(
-              $id, $include_unpublished, $item['below'], $url_array
+              $url_array, $include_unpublished, $item['below'], $id
           );
           if (!empty($nextlevel)) {
             $classes[] = 'parent_li';
