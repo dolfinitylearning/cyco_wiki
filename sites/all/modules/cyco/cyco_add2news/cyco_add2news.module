@@ -1,0 +1,28 @@
+<?php
+
+/**
+ * Add news item if this is a new wiki page.
+ */
+function cyco_add2news_node_insert( $wiki_node ) {
+  if ( $wiki_node->type == 'wiki_page' ) {
+    global $user;
+    $title = $wiki_node->title;
+    $news_node = new stdClass();
+    $news_node->title = 'New wiki page';
+    $news_node->type = 'news_item';
+    node_object_prepare($news_node); // Sets some defaults.
+    $news = 'New wiki page: "' . $title . '":' . base_path() . 'node/' 
+        . $wiki_node->nid;
+    $news_node->field_body[ LANGUAGE_NONE ][0]['summary'] = $news;
+    $news_node->field_body[ LANGUAGE_NONE ][0]['value'] = $news;
+    $news_node->language = LANGUAGE_NONE; // Or e.g. 'en' if locale is enabled
+    $news_node->uid = $user->uid;
+    $news_node->status = 1; //(1 or 0): published or not
+    $news_node->promote = 0; //(1 or 0): promoted to front page
+    $news_node->comment = 2; // 0 = comments disabled, 1 = read only, 2 = read/write
+    // 'node' is default,
+    // Other possible values are "user" and  "taxonomy_term" 
+    $news_node = node_submit($news_node); // Prepare node for saving
+    node_save($news_node);
+  }
+}

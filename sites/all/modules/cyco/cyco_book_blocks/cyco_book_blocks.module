@@ -552,7 +552,7 @@ function cyco_book_blocks_node_delete($node) {
  */
 function _ccbb_maybe_erase_menu_cache( $node ) {
   if ( isset($node->book) ) {
-    if ( cyco_core_is_book_content_type( $node ) ) {
+    if ( $node->type == 'wiki_page' ) {
       $bid = $node->book['bid'];
       variable_del(_ccbb_compute_cache_name($bid, TRUE) );
       variable_del(_ccbb_compute_cache_name($bid, FALSE) );    

@@ -1,0 +1,6 @@
+name = Add to news
+description = Automatically add new wiki pages to the news.
+package = CyberCourse
+version = 7.x-1.0
+core = 7.x
+dependencies[] = cyco_core
