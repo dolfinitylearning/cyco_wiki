@@ -15,6 +15,8 @@ code {
   max-width: 100%;
 }
 
-.bordered {
-  border: 1px solid #777;
+.swim-plugin-error {
+  font-weight: bold;
+  font-size: 120%;
+  color: red;
 }

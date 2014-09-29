@@ -1,8 +1,13 @@
 (function ($) {
   Drupal.behaviors.cycoToc = {
+    alreadyRun: false,
     attach: function (context, settings) {
+      if ( this.alreadyRun ) {
+        return;
+      }
+      this.alreadyRun = true;
       var headingTagList 
-          = $('.document h1, .document h2, .document h3, .document h4');
+          = $('.swim h1, .swim h2, .swim h3, .swim h4');
       if ( headingTagList.size() > 0 ) {
         var html = '<div id="cyco_toc">'
                     + '<p id="cyco_toc_label">Contents</p>';
@@ -16,9 +21,7 @@
           elementCount ++;
         }); // end each
         html += '</div>';
-        //Only add the ToC to the first instance of a body.
-        //Prevents extras from appearing when exercises are inserted.
-        $('#page-title').after(html);
+        $('div.swim.textile').prepend(html);
       } // end if
     }
   };

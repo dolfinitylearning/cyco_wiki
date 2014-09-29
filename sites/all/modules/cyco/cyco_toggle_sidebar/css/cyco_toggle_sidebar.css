@@ -1,0 +1,17 @@
+#toggle-sidebar {
+  z-index: 1000;
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  cursor: pointer;
+  background-size: 1em;
+  vertical-align: middle;
+}
+
+#toggle-sidebar.expanded {
+  background-image: url("../images/minus_alt.svg");
+}
+
+#toggle-sidebar.collapsed {
+  background-image: url("../images/plus_alt.svg");
+}

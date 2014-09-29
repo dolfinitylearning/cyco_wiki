@@ -26,7 +26,6 @@
         editor.on('focus',function(evnt) {
           Drupal.ckeditorInstance = evnt.editor;
           Drupal.ckeditorActiveId = evnt.editor.name;
-//          $(editor.element.$).trigger('focus');
         });
         editor.document.appendStyleSheet( Drupal.settings.swim.editing_stylesheet );
         //Size the editor.
@@ -38,8 +37,6 @@
         //Flag the editor as initialized.
         $( "#" + editor.id ).attr("data-swim-init", "yes");
       });
-      
-      
       
       //Check that the config exists.
       if ( ! Drupal.swimCkConfig ) {
