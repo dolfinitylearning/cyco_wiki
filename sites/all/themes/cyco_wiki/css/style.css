@@ -138,12 +138,12 @@ footer ul.nav li {
 }
 
 .view-news .view-content .views-field-field-body {
-  margin-top: 1em;
+  margin-top: 0.5em;
   margin-left: 1em;
 }
 
 .view-news .view-content .views-row {
-  margin-bottom: 2em;
+  margin-bottom: 10px;
 }
 
 footer.region-footer {
