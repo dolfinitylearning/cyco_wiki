@@ -145,3 +145,18 @@ footer ul.nav li {
 .view-news .view-content .views-row {
   margin-bottom: 2em;
 }
+
+footer.region-footer {
+  padding-top: 1.5em;
+  padding-bottom: 0;
+  margin-top: 0;
+  width: 100%;
+}
+
+footer.region-footer .block-menu {
+  margin-bottom: 1em;
+}
+
+footer ul.nav li {
+  display: inline-block;
+}
