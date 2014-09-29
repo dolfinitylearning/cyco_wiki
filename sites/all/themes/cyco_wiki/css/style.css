@@ -83,41 +83,41 @@ footer ul.nav li {
 * Headers. The document class comes from docutils. 
 */
 
-.content .swim .document h1 {
+.swim  h1 {
   font-size: 190%;
 }
 
-.content .swim .document h2 {
+.swim  h2 {
   font-size: 150%;
 }
 
-.content .swim .document h3 {
+.swim  h3 {
   font-size: 100%;
   font-weight: bold;
   font-style: italic;
 }
 
-.content .swim .document h4 {
+.swim  h4 {
   font-size: 100%;
   font-style: italic;
 }
 
-.content .swim .document h5 {
+.swim  h5 {
   font-size: 80%;
   font-weight: bold;
   font-style: italic;  
 }
 
-.content .swim .document h6 {
+.swim  h6 {
   font-size: 80%;
   font-style: italic;
 }
 
-.content .field {
+.field {
   margin-top: 1em;
 }
 
-.content .swim .document img {
+.swim  img {
   margin-bottom: 1em;
   max-width: 100%;
 }
@@ -125,4 +125,23 @@ footer ul.nav li {
 .view-recent-changes .views-field ul {
   list-style: none;
   padding-left: 0;
+}
+
+.view-news .view-content .views-field-title {
+  font-size: 120%;
+}
+
+.view-news .view-content .views-field-created {
+  margin-left: 1em;
+  font-size: 90%;
+  font-style: italic;
+}
+
+.view-news .view-content .views-field-field-body {
+  margin-top: 1em;
+  margin-left: 1em;
+}
+
+.view-news .view-content .views-row {
+  margin-bottom: 2em;
 }
