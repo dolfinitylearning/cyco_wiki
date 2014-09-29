@@ -23,7 +23,7 @@ function cyco_book_blocks_menu_link_alter(&$item){
     $book_root = node_load($bid);
     //Perm for whether the current user can see unpublished items.
     $book_type = $book_root->type;
-    if ( cyco_core_is_book_content_type($book_type) ) {
+    if ( $book_type == 'wiki_page' ) {
       _cbb_clear_book_tree_menu_caches($bid);
     }
   }
