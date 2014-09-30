@@ -1,28 +1,99 @@
 <?php
+/**
+ * @file Optionally make a news item when a wiki page is added or changed.
+ * Adds a checkbox to the wiki page node edit form. 
+ */
+
+/**
+ * Implements hook_permission().
+ */
+function cyco_add2news_permission(){
+  return array(
+    'autocreate news item' => array(
+      'title' => t('Autocreate a news item'),
+      'description' => t('When adding or editing a wiki page, user can '
+          . 'autocreate a news item about the event.')
+    ),
+  );
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function cyco_add2news_form_wiki_page_node_form_alter( &$form, $form_state ) {
+  if ( user_access('autocreate news item') ) {
+    $form['add_news_item'] = array(
+      '#type' => 'checkbox',
+      '#title' => t('Make a news item'),
+      '#description' => t('Create a news item about this event.'),
+      '#weight' => $form['field_body']['#weight'] + 1,
+    );
+    $form['#submit'][] = '_cyco_add2news_edit_submit';
+  }
+}
+
+function _cyco_add2news_edit_submit( $form, &$form_state ) {
+  if ( user_access('autocreate news item') ) {
+    //Did the user want to add a news item?
+    if ( $form_state['values']['add_news_item'] ) {
+      //Is this an update to the wiki page?
+      if ( isset( $form['#node']->nid ) ) {
+        //Update. 
+        $title = 'New wiki page';
+        $wiki_node = $form['#node'];
+        $message = 'New wiki page: "' . $wiki_node->title . '":' 
+            . base_path() . 'node/' . $wiki_node->nid;
+        _cyco_add2news_add_news_item($title, $message);
+      }
+      else {
+        //Not an update. A new node.
+        //Don't know the nid. Add flag to the node that gets passed to
+        //hook_node_insert.
+        $form['#node']->add_news_item = TRUE;
+      }
+    }//End checkbox set
+  }//End user access check.
+}
+
+/**
+ * Add a news item.
+ * @global stdClass $user The current user.
+ * @param string $title News item title.
+ * @param string $message News item content.
+ */
+function _cyco_add2news_add_news_item( $title, $message ) {
+  global $user;
+  $news_node = new stdClass();
+  $news_node->title = $title;
+  $news_node->type = 'news_item';
+  node_object_prepare($news_node); // Sets some defaults.
+  $news_node->field_body[ LANGUAGE_NONE ][0]['summary'] = $message;
+  $news_node->field_body[ LANGUAGE_NONE ][0]['value'] = $message;
+  $news_node->language = LANGUAGE_NONE; // Or e.g. 'en' if locale is enabled
+  $news_node->uid = $user->uid;
+  $news_node->status = 1; //(1 or 0): published or not
+  $news_node->promote = 0; //(1 or 0): promoted to front page
+  $news_node->comment = 2; // 0 = comments disabled, 1 = read only, 2 = read/write
+  //Make sure not in a book. There was a strange bug that put news nodes into 
+  //the wiki book.
+  $news_node->book['bid'] = 0;
+  $news_node = node_submit($news_node); // Prepare node for saving
+  node_save($news_node);
+  drupal_set_message( t('News item created.') );
+}
 
 /**
  * Add news item if this is a new wiki page.
  */
 function cyco_add2news_node_insert( $wiki_node ) {
   if ( $wiki_node->type == 'wiki_page' ) {
-    global $user;
-    $title = $wiki_node->title;
-    $news_node = new stdClass();
-    $news_node->title = 'New wiki page';
-    $news_node->type = 'news_item';
-    node_object_prepare($news_node); // Sets some defaults.
-    $news = 'New wiki page: "' . $title . '":' . base_path() . 'node/' 
-        . $wiki_node->nid;
-    $news_node->field_body[ LANGUAGE_NONE ][0]['summary'] = $news;
-    $news_node->field_body[ LANGUAGE_NONE ][0]['value'] = $news;
-    $news_node->language = LANGUAGE_NONE; // Or e.g. 'en' if locale is enabled
-    $news_node->uid = $user->uid;
-    $news_node->status = 1; //(1 or 0): published or not
-    $news_node->promote = 0; //(1 or 0): promoted to front page
-    $news_node->comment = 2; // 0 = comments disabled, 1 = read only, 2 = read/write
-    // 'node' is default,
-    // Other possible values are "user" and  "taxonomy_term" 
-    $news_node = node_submit($news_node); // Prepare node for saving
-    node_save($news_node);
+    if ( user_access('autocreate news item') ) {
+      if ( isset( $wiki_node->add_news_item ) && $wiki_node->add_news_item ) {
+        $title = 'Changed wiki page';
+        $message = 'Changed wiki page: "' . $wiki_node->title . '":' 
+            . base_path() . 'node/' . $wiki_node->nid;
+        _cyco_add2news_add_news_item($title, $message);
+      }
+    }
   }
 }
