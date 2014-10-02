@@ -89,8 +89,8 @@ function cyco_add2news_node_insert( $wiki_node ) {
   if ( $wiki_node->type == 'wiki_page' ) {
     if ( user_access('autocreate news item') ) {
       if ( isset( $wiki_node->add_news_item ) && $wiki_node->add_news_item ) {
-        $title = 'Changed wiki page';
-        $message = 'Changed wiki page: "' . $wiki_node->title . '":' 
+        $title = 'Created wiki page: ' . $wiki_node->title;
+        $message = 'Created wiki page: "' . $wiki_node->title . '":' 
             . base_path() . 'node/' . $wiki_node->nid;
         _cyco_add2news_add_news_item($title, $message);
       }
