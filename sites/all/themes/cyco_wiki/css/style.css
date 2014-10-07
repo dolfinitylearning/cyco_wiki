@@ -160,3 +160,12 @@ footer.region-footer .block-menu {
 footer ul.nav li {
   display: inline-block;
 }
+
+#block-system-main {
+  margin-top: 1em;
+}
+
+#block-system-main #forum table td,
+#block-system-main #forum table th {
+  padding: 1em;
+}
