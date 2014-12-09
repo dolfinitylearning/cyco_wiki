@@ -14,4 +14,13 @@ This is for custom styles the user wants to use in authoring SWIM content.
   padding: 5px;
 }
 
+.swim .right {
+  float: right;
+}
+
+.swim .left {
+  float: left;
+}
+
+
 
