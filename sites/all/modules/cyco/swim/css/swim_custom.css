@@ -23,15 +23,18 @@ This is for custom styles the user wants to use in authoring SWIM content.
 }
 
 .swim .attention {
+  padding: 1em;
   font-size: 120%;
-  border: 1px solid #888;
   border-radius: 1em;
   background-color: #F8F8F8;
+  box-shadow: 0 0 10px #888;
 }
 
 .swim .note {
+  display: inline-block;
   font-size: 90%;
-  border-radius: 1em;
-  background-color: #F8F8F8;
-  margin-left: 4em;  
+  background-color: #ffffcc;
+  margin-left: 4em;
+  padding: 1em;
+  box-shadow: 3px 3px 5px #aaa;  
 }
