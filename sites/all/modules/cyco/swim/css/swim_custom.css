@@ -38,3 +38,12 @@ This is for custom styles the user wants to use in authoring SWIM content.
   padding: 1em;
   box-shadow: 3px 3px 5px #aaa;  
 }
+
+.swim .figure {
+  margin-left: 2em;
+}
+
+.swim .caption {
+  font-weight: bold;
+  margin-left: 2em;
+}
