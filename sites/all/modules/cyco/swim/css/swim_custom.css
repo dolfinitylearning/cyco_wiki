@@ -47,3 +47,20 @@ This is for custom styles the user wants to use in authoring SWIM content.
   font-weight: bold;
   margin-left: 2em;
 }
+
+.swim .table-full-border td,
+.swim .table-full-border th {
+  padding: 0.5em;
+  border: 1px solid #666;
+}
+
+.swim table {
+  margin-bottom: 1em;
+}
+
+.swim .author-note {
+  border: 1px solid #EEE;
+  background-color: #FFFFDD;
+  padding: 1em;
+}
+
