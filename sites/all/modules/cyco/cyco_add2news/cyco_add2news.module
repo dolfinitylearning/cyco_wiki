@@ -39,9 +39,9 @@ function _cyco_add2news_edit_submit( $form, &$form_state ) {
       //Is this an update to the wiki page?
       if ( isset( $form['#node']->nid ) ) {
         //Update. 
-        $title = 'New wiki page';
+        $title = 'Updated wiki page';
         $wiki_node = $form['#node'];
-        $message = 'New wiki page: "' . $wiki_node->title . '":' 
+        $message = 'Updated wiki page: "' . $wiki_node->title . '":' 
             . base_path() . 'node/' . $wiki_node->nid;
         _cyco_add2news_add_news_item($title, $message);
       }
