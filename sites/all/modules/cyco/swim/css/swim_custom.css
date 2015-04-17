@@ -14,38 +14,8 @@ This is for custom styles the user wants to use in authoring SWIM content.
   padding: 5px;
 }
 
-.swim .right {
-  float: right;
-}
-
-.swim .left {
-  float: left;
-}
-
-.swim .attention {
-  padding: 1em;
-  font-size: 120%;
-  border-radius: 1em;
-  background-color: #F8F8F8;
-  box-shadow: 0 0 10px #888;
-}
-
-.swim .note {
-  display: inline-block;
-  font-size: 90%;
-  background-color: #ffffcc;
-  margin-left: 4em;
-  padding: 1em;
-  box-shadow: 3px 3px 5px #aaa;  
-}
-
-.swim .figure {
-  margin-left: 2em;
-}
-
-.swim .caption {
-  font-weight: bold;
-  margin-left: 2em;
+.swim .center {
+  text-align: center;
 }
 
 .swim .table-full-border td,
@@ -58,9 +28,111 @@ This is for custom styles the user wants to use in authoring SWIM content.
   margin-bottom: 1em;
 }
 
-.swim .author-note {
-  border: 1px solid #EEE;
-  background-color: #FFFFDD;
-  padding: 1em;
+.swim .caption {
+  margin-left: 5em;
+  font-weight: bold;
 }
 
+.swim .indent, .swim .indent1 {
+  margin-left: 4em;
+}
+
+.swim .indent2 {
+  margin-left: 8em;
+}
+
+.swim .indent3 {
+  margin-left: 12em;
+}
+
+.swim .indent4 {
+  margin-left: 16em;
+}
+
+.swim .indent5 {
+  margin-left: 20em;
+}
+
+.swim .indent6 {
+  margin-left: 24em;
+}
+
+.swim .figure {
+  margin-left: 2em;
+}
+
+.swim .warning {
+  color: red;
+  font-weight: bold;
+  font-size: 120%;
+}
+
+.swim .question {
+  margin-left: 5em;
+  font-size: 120%;
+}
+
+.swim .stand-out {
+  margin-left: 5em;
+  font-size: 120%;
+}
+
+.swim .troubleshoot {
+  background-image: url(images/troubleshoot.png);
+}
+
+.swim .extra {
+  background-image: url(images/extra.png);
+}
+
+.swim .note {
+  background-image: url(images/note.png);
+}
+
+.swim .extra,
+.swim .troubleshoot, 
+.swim .note {
+  margin-left: 2em;
+  padding: 60px 0 1em 60px;
+  background-position: 8px 8px;
+  background-repeat: no-repeat;
+  background-origin: border-box;
+  background-color: #FFFFDD;
+  border: 1px solid #EEE;
+  border-radius: 0.5em;
+}
+
+.swim .float-right {
+  float: right;
+  margin-left: 2em;
+}
+
+.swim .float-right-block {
+  float: right;
+  margin-left: 2em;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  text-align: right;
+  border: 1px solid #e3e3e3;
+  border-radius: 0.5em;
+  padding: 0.5em;
+  background-color: #F5F5F5;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05) inset;
+}
+
+.swim .float-left-block {
+  float: left;
+  margin-right: 2em;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  text-align: left;
+  border: 1px solid #e3e3e3;
+  border-radius: 0.5em;
+  padding: 0.5em;
+  background-color: #F5F5F5;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05) inset;
+}
+
+.swim .align-right {
+  text-align: right;
+}
