@@ -6,6 +6,7 @@
   var uiNameSpace; //For namespacing.
   Drupal.behaviors.toggleSidebar = {
     setup: function() {
+      return;
       this.cookieName = "cyco_toggle_sidebar";
       //Cookie expires in 3 days, and is site-wide.
       //  Three days, because humans may have forgotten what they did
@@ -34,6 +35,7 @@
       this.widgetSelector = "#toggle-sidebar";
     },
     attach: function(context, settings) {
+      return;
       uiNameSpace = this;
       this.setup();
       //Only make one of them. CTools modals can cause multiples. 
