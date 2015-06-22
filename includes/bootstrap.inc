@@ -1,5 +1,5 @@
 <?php
-      
+
 /**
  * @file
  * Functions that need to be loaded on every Drupal request.
@@ -8,7 +8,7 @@
 /**
  * The current system version.
  */
-define('VERSION', '7.36');
+define('VERSION', '7.38');
 
 /**
  * Core API compatibility.
